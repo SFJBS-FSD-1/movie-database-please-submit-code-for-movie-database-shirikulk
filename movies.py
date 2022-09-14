@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from flask_restful import Api, Resource
 from flask_sqlalchemy import SQLAlchemy
 from http import HTTPStatus
@@ -77,6 +77,9 @@ class Movie(db.Model):
         db.session.commit()
         return movie
 
+@app.route("/")   # @ means a decorator
+def home():
+    return render_template("home.html")
 
 class allmovies(Resource):
     def post(self):
